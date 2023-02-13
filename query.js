@@ -1,4 +1,4 @@
-function queryString(str) {
+function queryString(str) { // Function to return entries in a table based on a string SQL command.
 
     var data;
 
@@ -65,10 +65,100 @@ function queryString(str) {
     return data;
 }
 
+function login(user,pass) { // Function to check login credentials and return the name of the user as well as the type of user they are
+    let string = "SELECT Password, UserType, FirstName, UserId FROM [dbo].[Users] WHERE Username = \'" + user + "\'";
+    queryString(string).then(function(results){
+        const fields = results.split(';');
+        if (pass === fields[0]) { 
+            return (fields[1] + ";" + fields[2] + ";" + fields[3]);
+        }
+        else {
+            return "D";
+        }
+    });
+}
 
-queryString(`SELECT * FROM [dbo].[Exercises]`).then(function(results){
-    console.log(results);
-});
+function roster() { // Function to return the full roster of players
+    let string = "SELECT FirstName, LastName, PlayerNumber FROM [dbo].[Users] WHERE UserType = \'P\'";
+    queryString(string).then(function(results){
+        return results;
+    });
+}
 
+function Assigned(userId) { // Function to return a players assigned programs
+    let string = "SELECT RoutineId, Notes FROM [dbo].[Assignments] WHERE UserId = \'" + userId + "\'";
+    queryString(string).then(function(results){
+        const fields = results.split(';');
+        let rout = "SELECT RoutineName, ExerciseIds, SetNums, RepNums FROM [dbo].[Routines] WHERE RoutineId = \'" + fields[0] + "\'";
+        queryString(rout).then(function(set){
+            return(set + "!" + fields[1]);
+        });
+        return results;
+    });
+}
 
+function GetRoutines() { // Pulls a complete list of all the general routines
+    let string = "SELECT RoutineId, RoutineName FROM [dbo].[Routines] WHERE Visible = 1 ORDER BY RoutineName";
+    queryString(string).then(function(results){
+        return results;
+    });
+}
 
+function RoutineDetails(RoutId) { // Returns the associated exercises and details for a particular routine
+    let string = "SELECT RoutineName, ExerciseIds, SetNums, RepNums FROM [dbo].[Routines] WHERE RoutineId = \'" + RoutId + "\'";
+    queryString(string).then(function(results){
+        return results;
+    });
+}
+
+function GetExercise(exId) { // Function to return the details of an exercise using its Id Number
+    let string = "SELECT ExerciseName, Link, Description FROM [dbo].[Exercises] WHERE ExerciseId = \'" + exId + "\'";
+    queryString(string).then(function(results){
+        return results;
+    });
+}
+
+function AddExercise(name, link, descript) { // Function for trainer to add exercise
+    if (name === "") {
+        return "Invalid Name";
+    }
+    let dupCheck = "SELECT * FROM [dbo].[Exercises] WHERE ExerciseName = \'" + name + "\'";
+    queryString(dupCheck).then(function(results){
+        if (results === "") {
+            let string = "Insert Into [dbo].[Exercises] values (\'" + name + "\',\'" + link + "\',\'" + descript + "\')";
+            string = string.replace(/\'\'/g, "null");
+            queryString(string).then(function(results){
+                return results;
+            });
+        }
+        else {
+            return "Exercise Name Already Exists";
+        }
+    });
+}
+
+function AddUser(fname, mname, lname, username, password, number, type, code) { // Function for trainer to add a new user such as a player or student assistant
+    if (fname == "" || lname == "" || username == "" || password == "") {
+        return "Empty Fields";
+    }
+    let dupCheck = "SELECT * FROM [dbo].[Users] WHERE UserName = \'" + username + "\'";
+    queryString(dupCheck).then(function(results){
+        if (results === "") {
+            let string = "Insert Into [dbo].[Users] values (\'" + fname + "\',\'" + mname + "\',\'" + lname + "\'" + type + "\',\'" + username + "\',\'" + password + "\',\'" + number + "\',\'" + code + "\')";
+            string = string.replace(/\'\'/g, "null");
+            queryString(string).then(function(results){
+                return results;
+            });
+        }
+        else {
+            return "User Already Exists";
+        }
+    });
+}
+
+let access = AddExercise("Shoul Press", "", "");
+console.log(access);
+
+//queryString(`SELECT * FROM [dbo].[Exercises]`).then(function(results){
+  //  console.log(results);
+//});
