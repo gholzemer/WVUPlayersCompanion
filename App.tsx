@@ -6,113 +6,55 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from './screens/HomeScreen';
+import ATHomeScreen from './screens/althetic-trainers/ATHomeScreen';
+import AthleteHomeScreen from './screens/athlete/AthleteHomeScreens';
+import RosterScreen from './screens/althetic-trainers/RosterScreen';
+import AthleteStatsScreen from './screens/AthleteStatsScreen';
+import NewProgramScreen from './screens/althetic-trainers/NewProgramScreen';
+import NewExerciseScreen from './screens/althetic-trainers/NewExerciseScreen';
+import FeaturedProgramSelectionScreen from './screens/althetic-trainers/SelectedFeaturedProgramScreen';
+import AthleteProfileScreen from './screens/althetic-trainers/AthleteProfileScreen';
+import LogsScreen from './screens/althetic-trainers/LogsScreen';
+import ExercisesScreen from './screens/ExercisesScreen';
+import NotesScreen from './screens/NotesScreen';
+import FeaturedProgramsScreen from './screens/althetic-trainers/FeaturedProgramsScreen';
+import SelectedFeaturedProgramScreen from './screens/althetic-trainers/SelectedFeaturedProgramScreen';
+import CompletedWorkoutScreen from './screens/athlete/CompletedWorkoutScreen';
+import ProgramsScreen from './screens/athlete/ProgramsScreen';
+import SelectedProgramScreen from './screens/athlete/SelectedProgramScreen';
+import WorkoutScreen from './screens/athlete/WorkoutScreen';
+import ProgramPreviewScreen from './screens/athlete/ProgramPreviewScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const Stack = createNativeStackNavigator();
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function App() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="ATHomeScreen" component={ATHomeScreen} />
+        <Stack.Screen name="RosterScreen" component={RosterScreen} />
+        <Stack.Screen name="AthleteStatsScreen" component={AthleteStatsScreen} />
+        <Stack.Screen name="AthleteProfileScreen" component={AthleteProfileScreen} />
+        <Stack.Screen name="NewProgramScreen" component={NewProgramScreen} />
+        <Stack.Screen name="NewExerciseScreen" component={NewExerciseScreen} />
+        <Stack.Screen name="FeaturedProgramsScreen" component={FeaturedProgramsScreen} />
+        <Stack.Screen name="SelectedFeaturedProgramScreen" component={SelectedFeaturedProgramScreen} />
+        <Stack.Screen name="LogsScreen" component={LogsScreen} />
+        <Stack.Screen name="ExercisesScreen" component={ExercisesScreen} />
+        <Stack.Screen name="NotesScreen" component={NotesScreen} />
+        <Stack.Screen name="AthleteHomeScreen" component={AthleteHomeScreen} />
+        <Stack.Screen name="CompletedWorkoutScreen" component={CompletedWorkoutScreen} />
+        <Stack.Screen name="ProgramsScreen" component={ProgramsScreen} />
+        <Stack.Screen name="ProgramPreviewScreen" component={ProgramPreviewScreen} />
+        <Stack.Screen name="SelectedProgramScreen" component={SelectedProgramScreen} />
+        <Stack.Screen name="WorkoutScreen" component={WorkoutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
 export default App;
