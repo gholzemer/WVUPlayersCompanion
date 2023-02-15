@@ -6,3 +6,4 @@ ios/*
 android/*
 node_modules/*
 vendor/*
+.vscode
