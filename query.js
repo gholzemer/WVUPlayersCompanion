@@ -66,7 +66,7 @@ function queryString(str) { // Function to return entries in a table based on a 
     return data;
 }
 
-function login(user, pass) { // Function to check login credentials and return the name of the user as well as the type of user they are
+export function login(user, pass) { // Function to check login credentials and return the name of the user as well as the type of user they are
     let string = "SELECT Password, UserType, FirstName, UserId FROM [dbo].[Users] WHERE Username = \'" + user + "\'";
     queryString(string).then(function (results) {
         const fields = results.split(';');
@@ -79,14 +79,14 @@ function login(user, pass) { // Function to check login credentials and return t
     });
 }
 
-function roster() { // Function to return the full roster of players
+export function roster() { // Function to return the full roster of players
     let string = "SELECT FirstName, LastName, PlayerNumber FROM [dbo].[Users] WHERE UserType = \'P\'";
     queryString(string).then(function (results) {
         return results;
     });
 }
 
-function Assigned(userId) { // Function to return a players assigned programs
+export function Assigned(userId) { // Function to return a players assigned programs
     let string = "SELECT RoutineId, Notes FROM [dbo].[Assignments] WHERE UserId = \'" + userId + "\'";
     queryString(string).then(function (results) {
         const fields = results.split(';');
@@ -98,28 +98,40 @@ function Assigned(userId) { // Function to return a players assigned programs
     });
 }
 
-function GetRoutines() { // Pulls a complete list of all the general routines
+export function GetRoutines() { // Pulls a complete list of all the general routines
     let string = "SELECT RoutineId, RoutineName FROM [dbo].[Routines] WHERE Visible = 1 ORDER BY RoutineName";
     queryString(string).then(function (results) {
         return results;
     });
 }
 
-function RoutineDetails(RoutId) { // Returns the associated exercises and details for a particular routine
+export function RoutineDetails(RoutId) { // Returns the associated exercises and details for a particular routine
     let string = "SELECT RoutineName, ExerciseIds, SetNums, RepNums FROM [dbo].[Routines] WHERE RoutineId = \'" + RoutId + "\'";
     queryString(string).then(function (results) {
         return results;
     });
 }
 
-function GetExercise(exId) { // Function to return the details of an exercise using its Id Number
+export function GetExercise(exId) { // Function to return the details of an exercise using its Id Number
     let string = "SELECT ExerciseName, Link, Description FROM [dbo].[Exercises] WHERE ExerciseId = \'" + exId + "\'";
     queryString(string).then(function (results) {
         return results;
     });
 }
 
-function AddExercise(name, link, descript) { // Function for trainer to add exercise
+export function GetVideo(exId) {
+    let string = "SELECT Link FROM [dbo].[Exercises] WHERE ExerciseId = \'" + exId + "\'";
+    queryString(string).then(function (results) {
+        return results;
+    });
+}
+export function GetVideo2(exercise) {
+    let string = "SELECT Youtube FROM [dbo].[Graphics] WHERE Exercise = \'" + exercise + "\'";
+    queryString(string).then(function (results) {
+        return results;
+    });
+}
+export function AddExercise(name, link, descript) { // Function for trainer to add exercise
     if (name === "") {
         return "Invalid Name";
     }
@@ -138,7 +150,7 @@ function AddExercise(name, link, descript) { // Function for trainer to add exer
     });
 }
 
-function AddUser(fname, mname, lname, username, password, number, type, code) { // Function for trainer to add a new user such as a player or student assistant
+export function AddUser(fname, mname, lname, username, password, number, type, code) { // Function for trainer to add a new user such as a player or student assistant
     if (fname == "" || lname == "" || username == "" || password == "") {
         return "Empty Fields";
     }

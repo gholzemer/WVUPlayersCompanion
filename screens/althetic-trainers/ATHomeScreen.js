@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {View, Button, StyleSheet} from 'react-native';
+import { Video } from "expo-av";
 
 function ATHomeScreen({ navigation }) {
   return (
@@ -14,8 +15,31 @@ function ATHomeScreen({ navigation }) {
         onPress={() => navigation.navigate('NewExerciseScreen')} />
       <Button title="Change Featured Program"
         onPress={() => navigation.navigate('FeaturedProgramsScreen')} />
+        <Video
+           style={styles1.video}
+           resizeMode="contain"
+           source={{
+             uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+           }}   
+           useNativeControls={true} 
+       />
+
     </View>
   );
 }
+
+const styles1 = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "blue",
+    alignItems: "end",
+    justifyContent: "center",
+  },
+  video: {
+    alignSelf: 'center',
+    width: 250,
+    height: 200,
+  },
+});
 
 export default ATHomeScreen;
