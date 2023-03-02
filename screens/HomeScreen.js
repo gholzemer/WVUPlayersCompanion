@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Button} from 'react-native';
-
+import { MediumButton } from '../src/components/Buttons';
 function HomeScreen({ navigation }) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button title="AT View"
+      <MediumButton text="AT View"
         onPress={() => navigation.navigate('ATHomeScreen')} />
-      <Button title="Athlete View"
+      <MediumButton text="Athlete View"
         onPress={() => navigation.navigate('AthleteHomeScreen')} />
     </View>
   );
