@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 function queryString(str) { // Function to return entries in a table based on a string SQL command.
 
     var data;
