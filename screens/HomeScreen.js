@@ -3,7 +3,7 @@ import {View, Button} from 'react-native';
 import { MediumButton } from '../src/components/Buttons';
 function HomeScreen({ navigation }) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: "center", gap: 20 }}>
       <MediumButton text="AT View"
         onPress={() => navigation.navigate('ATHomeScreen')} />
       <MediumButton text="Athlete View"

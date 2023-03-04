@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View, Platform } from "react-native";
 
 export function MediumButton({ text , onPress}) {
     return (
@@ -20,9 +20,13 @@ const mediumstyles = StyleSheet.create({
         width: 543,
         height: 75,
         backgroundColor: '#2020B6',
-        elevation: 500,
-        // TODO: add drop-shadow for ios devices
-        // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        ...Platform.select({
+            ios: {
+              shadowColor: '#000000',
+              shadowOffset: { width: 10, height: 10 },
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+            },})
     },
     buttonText: {
         color: '#F9F4F5',
@@ -50,7 +54,13 @@ const smallstyles = StyleSheet.create({
         width: 245,
         height: 65,
         backgroundColor: '#2020B6',
-        // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        ...Platform.select({
+            ios: {
+              shadowColor: '#000000',
+              shadowOffset: { width: 10, height: 10 },
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+            },})
     },
     buttonText: {
         color: '#F9F4F5',
@@ -78,7 +88,13 @@ const largestyles = StyleSheet.create({
         width: 675,
         height: 90,
         backgroundColor: '#2020B6',
-        // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        ...Platform.select({
+            ios: {
+              shadowColor: '#000000',
+              shadowOffset: { width: 10, height: 10 },
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+            },})
     },
     buttonText: {
         color: '#F9F4F5',

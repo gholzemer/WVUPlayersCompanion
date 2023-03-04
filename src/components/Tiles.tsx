@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View, Platform } from "react-native";
 
 export function SmallTile({ text , onPress }) {
     return (
@@ -20,7 +20,13 @@ const styles = StyleSheet.create({
         width: 172,
         height: 136, 
         backgroundColor: '#D9D9D9',
-        // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        ...Platform.select({
+            ios: {
+              shadowColor: '#000000',
+              shadowOffset: { width: 10, height: 10 },
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+            },})
     },
     buttonText: {
         color: '#F9F4F5',
@@ -49,7 +55,13 @@ const Medstyles = StyleSheet.create({
         width: 349,
         height: 202, 
         backgroundColor: '#D9D9D9',
-        // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        ...Platform.select({
+            ios: {
+              shadowColor: '#000000',
+              shadowOffset: { width: 10, height: 10 },
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+            },})
     },
     buttonText: {
         color: '#F9F4F5',
@@ -78,7 +90,13 @@ const Largestyles = StyleSheet.create({
         width: 638,
         height: 396, 
         backgroundColor: '#D9D9D9',
-        // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        ...Platform.select({
+            ios: {
+              shadowColor: '#000000',
+              shadowOffset: { width: 10, height: 10 },
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+            },})
     },
     buttonText: {
         color: '#F9F4F5',
