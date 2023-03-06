@@ -1,7 +1,9 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View, Platform } from "react-native";
 
-export function MediumButton({ text , onPress}) {
+
+
+export function MediumButton({ text, onPress}) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={mediumstyles.button}>
