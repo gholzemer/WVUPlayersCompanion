@@ -17,8 +17,9 @@ const mediumstyles = StyleSheet.create({
         borderColor: "#757575",
         paddingTop: 6,
         paddingBottom: 6,
-        width: 543,
+        width: '80%',
         height: 75,
+        alignSelf:'center',
         backgroundColor: '#2020B6',
         ...Platform.select({
             ios: {
@@ -32,7 +33,7 @@ const mediumstyles = StyleSheet.create({
         color: '#F9F4F5',
         fontSize: 36,
         fontWeight: "500",
-        textAlign: "center",
+        textAlign: "center"
     }
 })
 export function SmallButton({ text, onPress }) {
