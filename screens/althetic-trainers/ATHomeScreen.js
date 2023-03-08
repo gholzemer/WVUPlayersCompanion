@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Button, StyleSheet} from 'react-native';
-import { Video } from "expo-av";
 
 function ATHomeScreen({ navigation }) {
   return (
@@ -15,15 +14,6 @@ function ATHomeScreen({ navigation }) {
         onPress={() => navigation.navigate('NewExerciseScreen')} />
       <Button title="Change Featured Program"
         onPress={() => navigation.navigate('FeaturedProgramsScreen')} />
-        <Video
-           style={styles1.video}
-           resizeMode="contain"
-           source={{
-             uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-           }}   
-           useNativeControls={true} 
-       />
-
     </View>
   );
 }
