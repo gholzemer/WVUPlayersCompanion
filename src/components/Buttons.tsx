@@ -19,8 +19,9 @@ const mediumstyles = StyleSheet.create({
         borderColor: "#757575",
         paddingTop: 6,
         paddingBottom: 6,
-        width: 543,
-        height: 75,
+        width: "66%",
+        height: "47%",
+        alignSelf:'center',
         backgroundColor: '#2020B6',
         ...Platform.select({
             ios: {
@@ -35,6 +36,8 @@ const mediumstyles = StyleSheet.create({
         fontSize: 36,
         fontWeight: "500",
         textAlign: "center",
+        paddingVertical: "2%",
+
     }
 })
 export function SmallButton({ text, onPress }) {
@@ -53,8 +56,8 @@ const smallstyles = StyleSheet.create({
         borderColor: "#757575",
         paddingTop: 6,
         paddingBottom: 6,
-        width: 245,
-        height: 65,
+        width: "30%",
+        height: "45%",
         backgroundColor: '#2020B6',
         ...Platform.select({
             ios: {
@@ -69,6 +72,7 @@ const smallstyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "500",
         textAlign: "center",
+        paddingVertical: "5%",
     }
 })
 export function LargeButton({ text, onPress }) {
@@ -87,9 +91,11 @@ const largestyles = StyleSheet.create({
         borderColor: "#757575",
         paddingTop: 6,
         paddingBottom: 6,
-        width: 675,
-        height: 90,
+        width: "83%",
+        height: "55%" ,
         backgroundColor: '#2020B6',
+        alignSelf: 'center',
+        
         ...Platform.select({
             ios: {
               shadowColor: '#000000',
@@ -102,6 +108,7 @@ const largestyles = StyleSheet.create({
         color: '#F9F4F5',
         fontSize: 50,
         fontWeight: "500",
-        textAlign: "center",
+        textAlign: 'center',
+        paddingVertical: "3%",
     }
 })
