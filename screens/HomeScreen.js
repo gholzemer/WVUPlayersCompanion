@@ -7,9 +7,9 @@ function HomeScreen({ navigation }) {
     
     <View style={{width: '100%', marginVertical:'50%', gap:20}}>
       
-      <MediumTile text="AT View"
+      <LargeButton text="AT View"
         onPress={() => navigation.navigate('ATHomeScreen')} />
-      <LargeTile text="Athlete View"
+      <LargeButton text="Athlete View"
         onPress={() => navigation.navigate('AthleteHomeScreen')} />
     
     </View>
